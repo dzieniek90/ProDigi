@@ -10,11 +10,11 @@ namespace ProDigi.App.Abstract
     {
         List<T> Items { get; set; }
 
-        List<T> GetAllItems();
+        List<T> GetAll();
         int GetLastId();
-        T GetItemById(int id);
-        int AddItem(T item);
-        int UpdateItem(T item);
-        void RemoveItem(T item);
+        T GetById(int id);
+        int Add(T item);
+        int Update(T item);
+        void Remove(T item);
     }
 }

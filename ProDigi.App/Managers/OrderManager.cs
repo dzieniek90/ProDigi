@@ -34,14 +34,14 @@ namespace ProDigi.App.Managers
             Int32.TryParse(returner.KeyChar.ToString(), out typeId);
 
             Console.WriteLine("Please select product for order:");
-            for (int i = 0; i < _productService.GetAllItems().Count; i++)
+            for (int i = 0; i < _productService.GetAll().Count; i++)
             {
                 Console.WriteLine($"{_productService.Items[i].Id}. {_productService.Items[i].Name}");
             }
             var returner2 = Console.ReadKey();
             int productId;
             Int32.TryParse(returner2.KeyChar.ToString(), out productId);
-            Product product= _productService.GetItemById(productId);
+            Product product= _productService.GetById(productId);
 
             Console.WriteLine("Please select quantity for order:");
             var returner3 = Console.ReadLine();
@@ -53,19 +53,19 @@ namespace ProDigi.App.Managers
 
             var lastId = _orderService.GetLastId();
             Order order = new Order(lastId + 1, typeId, product, quantity, company);
-            _orderService.AddItem(order);
+            _orderService.Add(order);
             return order.Id;
         }
 
         public void RemoveOrderById(int id)
         {
-            var order = _orderService.GetItemById(id);
-            _orderService.RemoveItem(order);
+            var order = _orderService.GetById(id);
+            _orderService.Remove(order);
         }
 
         public Order GetOrderById(int id)
         {
-            var item = _orderService.GetItemById(id);
+            var item = _orderService.GetById(id);
             return item;
         }
     }

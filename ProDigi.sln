@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProDigi", "ProDigi\ProDigi.csproj", "{69FACC48-0DE2-4C99-93D6-9B549906364A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProDigi", "ProDigi\ProDigi.csproj", "{69FACC48-0DE2-4C99-93D6-9B549906364A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProDigi.App", "ProDigi.App\ProDigi.App.csproj", "{882DBECB-9B25-49E9-BAD1-E11E54BBCF13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProDigi.App", "ProDigi.App\ProDigi.App.csproj", "{882DBECB-9B25-49E9-BAD1-E11E54BBCF13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProDigi.Domain", "ProDigi.Domain\ProDigi.Domain.csproj", "{D900879E-7F2E-408A-89D8-DB31F766D485}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProDigi.Domain", "ProDigi.Domain\ProDigi.Domain.csproj", "{D900879E-7F2E-408A-89D8-DB31F766D485}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

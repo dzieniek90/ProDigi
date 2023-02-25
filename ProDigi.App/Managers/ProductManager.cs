@@ -22,7 +22,7 @@ namespace ProDigi.App.Managers
 
         private void Initialize()
         {
-            _productService.AddItem(new Product(1,"Testowy","1.0","Pan Jan"));
+            _productService.Add(new Product(1,"Testowy","1.0","Pan Jan"));
         }
         public int AddNewProduct()
         {
@@ -35,19 +35,19 @@ namespace ProDigi.App.Managers
 
             var lastId = _productService.GetLastId();
             Product product = new Product(lastId + 1, name, version, designer);
-            _productService.AddItem(product);
+            _productService.Add(product);
             return product.Id;
         }
 
         public void RemoveProductById(int id)
         {
-            var product = _productService.GetItemById(id);
-            _productService.RemoveItem(product);
+            var product = _productService.GetById(id);
+            _productService.Remove(product);
         }
 
         public Product GetProductById(int id)
         {
-            var product = _productService.GetItemById(id);
+            var product = _productService.GetById(id);
             return product;
         }
     }

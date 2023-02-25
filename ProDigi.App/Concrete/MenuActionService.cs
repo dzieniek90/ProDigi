@@ -29,24 +29,24 @@ namespace ProDigi.App.Concrete
 
         private void Initialize()
         {
-            AddItem(new MenuAction(1, "Products manager", "Main"));
-            AddItem(new MenuAction(2, "Orders manager", "Main"));
+            Add(new MenuAction(1, "Products manager", "Main"));
+            Add(new MenuAction(2, "Orders manager", "Main"));
 
-            AddItem(new MenuAction(1, "Add product", "ProductManager"));
-            AddItem(new MenuAction(2, "Remove product", "ProductManager"));
-            AddItem(new MenuAction(3, "Show product details", "ProductManager"));
-            AddItem(new MenuAction(4, "List of all products", "ProductManager"));
-            AddItem(new MenuAction(5, "Back", "ProductManager"));
+            Add(new MenuAction(1, "Add product", "ProductManager"));
+            Add(new MenuAction(2, "Remove product", "ProductManager"));
+            Add(new MenuAction(3, "Show product details", "ProductManager"));
+            Add(new MenuAction(4, "List of all products", "ProductManager"));
+            Add(new MenuAction(5, "Back", "ProductManager"));
 
-            AddItem(new MenuAction(1, "Add order", "OrderManager"));
-            AddItem(new MenuAction(2, "Remove order", "OrderManager"));
-            AddItem(new MenuAction(3, "Show order details", "OrderManager"));
-            AddItem(new MenuAction(4, "List of orders by order type", "OrderManager"));
-            AddItem(new MenuAction(5, "Back", "OrderManager"));
+            Add(new MenuAction(1, "Add order", "OrderManager"));
+            Add(new MenuAction(2, "Remove order", "OrderManager"));
+            Add(new MenuAction(3, "Show order details", "OrderManager"));
+            Add(new MenuAction(4, "List of orders by order type", "OrderManager"));
+            Add(new MenuAction(5, "Back", "OrderManager"));
 
-            AddItem(new MenuAction(1, "Production", "OrderTypeMenu"));
-            AddItem(new MenuAction(2, "Service", "OrderTypeMenu"));
-            AddItem(new MenuAction(3, "Complaint", "OrderTypeMenu"));
+            Add(new MenuAction(1, "Production", "OrderTypeMenu"));
+            Add(new MenuAction(2, "Service", "OrderTypeMenu"));
+            Add(new MenuAction(3, "Complaint", "OrderTypeMenu"));
         }
     }
 }

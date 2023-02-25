@@ -30,23 +30,23 @@ namespace ProDigi.App.Common
             }
             return lastId;
         }
-        public int AddItem(T item)
+        public int Add(T item)
         {
             Items.Add(item);
             return item.Id;
         }
 
-        public List<T> GetAllItems()
+        public List<T> GetAll()
         {
             return Items;
         }
 
-        public void RemoveItem(T item)
+        public void Remove(T item)
         {
             Items.Remove(item);
         }
 
-        public int UpdateItem(T item)
+        public int Update(T item)
         {
             var entity = Items.FirstOrDefault(p => p.Id == item.Id);
             if (entity != null)
@@ -56,7 +56,7 @@ namespace ProDigi.App.Common
             return entity.Id;
         }
 
-        public T GetItemById(int id)
+        public T GetById(int id)
         {
             var entity = Items.FirstOrDefault(p => p.Id == id);
             return entity;
