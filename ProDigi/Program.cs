@@ -2,12 +2,13 @@
 using ProDigi.App.Concrete;
 using ProDigi.App.Managers;
 using ProDigi.Domain.Entity;
+using ProDigi.Helpers;
 
 MenuActionService actionService = new MenuActionService();
 OrderService orderService = new OrderService();
 ProductService productService = new ProductService();
-OrderManager orderManager = new OrderManager(actionService, orderService, productService);
-ProductManager productManager = new ProductManager(actionService,productService);
+OrderManager orderManager = new OrderManager(orderService);
+ProductManager productManager = new ProductManager(productService);
 int managerId;
     
 
@@ -61,18 +62,43 @@ while (true)
             switch (operation.KeyChar)
             {
                 case '1':
-                    var newId = productManager.AddNewProduct();
+                    Console.WriteLine("Please insert name for product:");
+                    var name = Console.ReadLine();
+                    Console.WriteLine("Please insert version for product:");
+                    var version = Console.ReadLine();
+                    Console.WriteLine("Please insert designer for product:");
+                    var designer = Console.ReadLine();
+
+                    var newId = productManager.AddNewProduct(name, version, designer);
+                    Console.WriteLine($"Added new product with id number: {newId}");
                     break;
                 case '2':
-                    var removeId = productService.ProductToRemoveSelectionView();
+                    Console.WriteLine("Please enter id for product you want to remove");
+                    var removeRead = Console.ReadKey();
+                    int removeId;
+                    Int32.TryParse(removeRead.KeyChar.ToString(), out removeId);
                     productManager.RemoveProductById(removeId);
                     break;
                 case '3':
-                    var detailId = productService.ProductDetailSelectionView();
-                    productService.ProductDetailView(detailId);
+                    Console.WriteLine("Please enter id for product you want to show:");
+                    var showRead= Console.ReadKey();
+                    int showId;
+                    Int32.TryParse(showRead.KeyChar.ToString(), out showId);
+
+                    var productToShow = productManager.GetProductById(showId);
+
+                    Console.WriteLine($"Product id: {productToShow.Id}");
+                    Console.WriteLine($"Product name: {productToShow.Name}");
+                    Console.WriteLine($"Product version: {productToShow.Version}");
+                    Console.WriteLine($"Product designer: {productToShow.Designer}");
+
                     break;
                 case '4':
-                    productService.AllProductsView();
+                    var allProducts = productManager.GetAllProducts();
+
+                    Console.WriteLine(allProducts.ToStringTable
+                    (new[] { "Id", "Name", "Version", "Designer" },
+                    a => a.Id, a => a.Name, a => a.Version, a => a.Designer));
                     break;
                 case '5':
                     back = true;
@@ -95,19 +121,69 @@ while (true)
             switch (operation.KeyChar)
             {
                 case '1':
-                    var newId = orderManager.AddNewOrder();
+                    var orderTypeMenu = actionService.GetMenuActionsByMenuName("OrderTypeMenu");
+                    Console.WriteLine("Please select order type:");
+                    for (int i = 0; i < orderTypeMenu.Count; i++)
+                    {
+                        Console.WriteLine($"{orderTypeMenu[i].Id}. {orderTypeMenu[i].Name}");
+                    }
+                    var typeRead = Console.ReadKey();
+                    int typeId;
+                    Int32.TryParse(typeRead.KeyChar.ToString(), out typeId);
+
+                    Console.WriteLine("Please select product ID for order:");
+                    for (int i = 0; i < productService.GetAll().Count; i++)
+                    {
+                        Console.WriteLine($"{productService.Items[i].Id}. {productService.Items[i].Name}");
+                    }
+                    var productRead = Console.ReadKey();
+                    int productId;
+                    Int32.TryParse(productRead.KeyChar.ToString(), out productId);
+                    Product product = productService.GetById(productId);
+
+                    Console.WriteLine("Please select quantity for order:");
+                    var returner3 = Console.ReadLine();
+                    int quantity;
+                    Int32.TryParse(returner3, out quantity);
+
+                    Console.WriteLine("Please select company for order:");
+                    var company = Console.ReadLine();
+
+                    var orderId = orderManager.AddNewOrder(typeId, product, quantity, company);
+                    Console.WriteLine($"Added new order with id number:  {orderId}");
                     break;
                 case '2':
-                    var removeId = orderService.OrderToRemoveSelectionView();
-                    orderManager.RemoveOrderById(removeId);
+                    Console.WriteLine("Please enter id for order you want to remove");
+                    var orderToRemove = Console.ReadKey();
+                    int orderToRemoveId;
+                    Int32.TryParse(orderToRemove.KeyChar.ToString(), out orderToRemoveId);
+
+                    orderManager.RemoveOrderById(orderToRemoveId);
                     break;
                 case '3':
-                    var detailId = orderService.OrderDetailSelectionView();
-                    orderService.OrderDetailView(detailId);
+                    Console.WriteLine("Please enter id for order you want to show:");
+                    var orderToShow = Console.ReadKey();
+                    int orderToShowId;
+                    Int32.TryParse(orderToShow.KeyChar.ToString(), out orderToShowId);
+
+                    var order = orderManager.GetOrderById(orderToShowId);
+
+                    Console.WriteLine($"Order id: {order.Id}");
+                    Console.WriteLine($"Order type: {order.Id}");
+                    Console.WriteLine($"Poduct name: {order.Produkt.Name}");
+                    Console.WriteLine($"Quantity: {order.Quantity}");
+                    Console.WriteLine($"Company name: {order.Company}");
                     break;
                 case '4':
-                    var orderTypeId = orderService.OrderTypeSelectionView();
-                    orderService.OrderByTypeIdView(orderTypeId);
+                    Console.WriteLine("Please enter Id for order type you want to show:");
+                    var ordersToShowByType = Console.ReadKey();
+                    int ordersToShowByTypeId;
+                    Int32.TryParse(ordersToShowByType.KeyChar.ToString(), out ordersToShowByTypeId);
+
+                    List<Order> ordersByType = orderManager.GetOrdersByTypeId(ordersToShowByTypeId);
+                    Console.WriteLine(ordersByType.ToStringTable
+                    (new[] { "Id", "Name", "Quantity", "Company" },
+                    a => a.Id, a => a.Produkt.Name, a => a.Quantity, a => a.Company));
                     break;
                 case '5':
                     back = true;
@@ -120,4 +196,5 @@ while (true)
         if (back)break;
     }
 }
+
 

@@ -11,46 +11,13 @@ namespace ProDigi.App.Managers
 {
     public class OrderManager
     {
-        private readonly MenuActionService _actionService;
         private IService<Order> _orderService;
-        private IService<Product> _productService;
-        public OrderManager(MenuActionService actionService, IService<Order> orderService, IService<Product> productService)
+        public OrderManager(IService<Order> orderService)
         {
             _orderService = orderService;
-            _actionService = actionService;
-            _productService = productService;
-
         }
-        public int AddNewOrder()
+        public int AddNewOrder(int typeId, Product product, int quantity, string company)
         {
-            var orderTypeMenu = _actionService.GetMenuActionsByMenuName("OrderTypeMenu");
-            Console.WriteLine("Please select order type:");
-            for (int i = 0; i < orderTypeMenu.Count; i++)
-            {
-                Console.WriteLine($"{orderTypeMenu[i].Id}. {orderTypeMenu[i].Name}");
-            }
-            var returner = Console.ReadKey();
-            int typeId;
-            Int32.TryParse(returner.KeyChar.ToString(), out typeId);
-
-            Console.WriteLine("Please select product for order:");
-            for (int i = 0; i < _productService.GetAll().Count; i++)
-            {
-                Console.WriteLine($"{_productService.Items[i].Id}. {_productService.Items[i].Name}");
-            }
-            var returner2 = Console.ReadKey();
-            int productId;
-            Int32.TryParse(returner2.KeyChar.ToString(), out productId);
-            Product product= _productService.GetById(productId);
-
-            Console.WriteLine("Please select quantity for order:");
-            var returner3 = Console.ReadLine();
-            int quantity; 
-            Int32.TryParse(returner3, out quantity);
-
-            Console.WriteLine("Please select company for order:");
-            var company = Console.ReadLine();
-
             var lastId = _orderService.GetLastId();
             Order order = new Order(lastId + 1, typeId, product, quantity, company);
             _orderService.Add(order);
@@ -67,6 +34,19 @@ namespace ProDigi.App.Managers
         {
             var item = _orderService.GetById(id);
             return item;
+        }
+
+        public List<Order> GetOrdersByTypeId(int typeId)
+        {
+            List<Order> toShow = new List<Order>();
+            foreach (var order in _orderService.Items)
+            {
+                if (order.OrderTypeId == typeId)
+                {
+                    toShow.Add(order);
+                }
+            }
+            return toShow;
         }
     }
 }

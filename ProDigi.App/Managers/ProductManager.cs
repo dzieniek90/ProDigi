@@ -11,12 +11,12 @@ namespace ProDigi.App.Managers
 {
     public class ProductManager
     {
-        private readonly MenuActionService _actionService;
+ 
         private IService<Product> _productService;
-        public ProductManager(MenuActionService actionService, IService<Product> productService)
+        public ProductManager(IService<Product> productService)
         {
             _productService = productService;
-            _actionService = actionService;
+
             Initialize();
         }
 
@@ -24,15 +24,8 @@ namespace ProDigi.App.Managers
         {
             _productService.Add(new Product(1,"Testowy","1.0","Pan Jan"));
         }
-        public int AddNewProduct()
+        public int AddNewProduct(string name, string version, string designer)
         {
-            Console.WriteLine("Please insert name for product:");
-            var name = Console.ReadLine();
-            Console.WriteLine("Please insert version for product:");
-            var version = Console.ReadLine();
-            Console.WriteLine("Please insert designer for product:");
-            var designer = Console.ReadLine();
-
             var lastId = _productService.GetLastId();
             Product product = new Product(lastId + 1, name, version, designer);
             _productService.Add(product);
@@ -49,6 +42,12 @@ namespace ProDigi.App.Managers
         {
             var product = _productService.GetById(id);
             return product;
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            var allProducts = _productService.GetAll();
+            return allProducts;
         }
     }
 }

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProDigi.App", "ProDigi.App\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProDigi.Domain", "ProDigi.Domain\ProDigi.Domain.csproj", "{D900879E-7F2E-408A-89D8-DB31F766D485}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProDigi.Tests", "ProDigi.Tests\ProDigi.Tests.csproj", "{163EDA1F-C903-4AD4-8ED1-FC1B1633476F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D900879E-7F2E-408A-89D8-DB31F766D485}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D900879E-7F2E-408A-89D8-DB31F766D485}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D900879E-7F2E-408A-89D8-DB31F766D485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{163EDA1F-C903-4AD4-8ED1-FC1B1633476F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163EDA1F-C903-4AD4-8ED1-FC1B1633476F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163EDA1F-C903-4AD4-8ED1-FC1B1633476F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163EDA1F-C903-4AD4-8ED1-FC1B1633476F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
