@@ -2,6 +2,7 @@
 using Moq;
 using ProDigi.App.Abstract;
 using ProDigi.App.Managers;
+using ProDigi.Domain.Common;
 using ProDigi.Domain.Entity;
 using System;
 using System.Collections.Generic;

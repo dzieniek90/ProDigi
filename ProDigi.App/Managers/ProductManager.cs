@@ -22,13 +22,14 @@ namespace ProDigi.App.Managers
 
         private void Initialize()
         {
-            _productService.Add(new Product(1,"Testowy","1.0","Pan Jan"));
+            ((ProductService) _productService).GetProductsFromXml();
         }
         public int AddNewProduct(string name, string version, string designer)
         {
             var lastId = _productService.GetLastId();
             Product product = new Product(lastId + 1, name, version, designer);
             _productService.Add(product);
+            ((ProductService)_productService).AddProductsToXml();
             return product.Id;
         }
 
@@ -36,6 +37,7 @@ namespace ProDigi.App.Managers
         {
             var product = _productService.GetById(id);
             _productService.Remove(product);
+            ((ProductService)_productService).AddProductsToXml();
         }
 
         public Product GetProductById(int id)
@@ -48,6 +50,19 @@ namespace ProDigi.App.Managers
         {
             var allProducts = _productService.GetAll();
             return allProducts;
+        }
+        public void GenerateRaport()
+        {
+            var fileName = "Products Report";
+            var filePatch = @"D:\Programowanie\ProDigi";
+            using FileStream fs = File.OpenWrite(@$"{filePatch}\{fileName}.csv");
+            using StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("Id, Name, Version, Designer");
+
+            foreach (var item in _productService.Items)
+            {
+                sw.WriteLine($"{item.Id},{item.Name},{item.Version},{item.Designer}");
+            }
         }
     }
 }

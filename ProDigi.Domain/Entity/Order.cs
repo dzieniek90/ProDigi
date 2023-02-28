@@ -13,20 +13,21 @@ namespace ProDigi.Domain.Entity
         {
 
         }
-        public Order(int id, int orderTypeId, Product produkt, int quantity, string company)
+        public Order(int id, int orderTypeId, Product produkt, int quantity, string company, OrderStatusType status)
         {
             Id = id;
             Produkt = produkt;
             Company = company;
             Quantity = quantity;
             OrderTypeId = orderTypeId;
+            Status = status;
         }
 
         public int OrderTypeId { get; set; }
         public Product Produkt { get; set; }
         public int Quantity { get; set; }
         public string Company { get; set; }
-        // public DateTime Deadline { get; set; }
+        public OrderStatusType Status { get; set; }
 
     }
 }

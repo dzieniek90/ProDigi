@@ -36,13 +36,15 @@ namespace ProDigi.App.Concrete
             Add(new MenuAction(2, "Remove product", "ProductManager"));
             Add(new MenuAction(3, "Show product details", "ProductManager"));
             Add(new MenuAction(4, "List of all products", "ProductManager"));
-            Add(new MenuAction(5, "Back", "ProductManager"));
+            Add(new MenuAction(5, "Generate raport", "ProductManager"));
+            Add(new MenuAction(9, "Back", "ProductManager"));
 
             Add(new MenuAction(1, "Add order", "OrderManager"));
             Add(new MenuAction(2, "Remove order", "OrderManager"));
             Add(new MenuAction(3, "Show order details", "OrderManager"));
             Add(new MenuAction(4, "List of orders by order type", "OrderManager"));
-            Add(new MenuAction(5, "Back", "OrderManager"));
+            Add(new MenuAction(5, "Generate raport", "OrderManager"));
+            Add(new MenuAction(9, "Back", "OrderManager"));
 
             Add(new MenuAction(1, "Production", "OrderTypeMenu"));
             Add(new MenuAction(2, "Service", "OrderTypeMenu"));
